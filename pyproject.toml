@@ -22,6 +22,7 @@ dependencies = [
 
 [project.scripts]
 colab-mcp = "colab_mcp:main"
+colab-mcp-codex-proxy = "colab_mcp.codex_static_proxy:main"
 
 [build-system]
 requires = ["hatchling"]

@@ -10,6 +10,30 @@ Popular clients that fit these criteria include:
 - Claude Code
 - Windsurf
 
+# Codex static proxy
+
+Current Codex Desktop builds may load the initial Colab MCP connection tool
+without surfacing notebook tools that appear after `notifications/tools/list_changed`.
+This fork adds a static proxy command for those clients:
+
+```toml
+[mcp_servers.colab-static-proxy]
+command = "uvx"
+args = ["git+https://github.com/ahzs645/colab-mcp-codex", "colab-mcp-codex-proxy"]
+enabled = true
+startup_timeout_sec = 30
+tool_timeout_sec = 120
+```
+
+Use the proxy tools in this order:
+
+1. `open_colab_browser_connection`
+2. `colab_list_tools`
+3. `colab_call_tool`
+
+`colab_call_tool` forwards to downstream Colab notebook tools such as
+`add_code_cell`, `add_text_cell`, `get_cells`, `update_cell`, `run_code_cell`,
+`move_cell`, and `delete_cell`.
 
 # Setup
 
